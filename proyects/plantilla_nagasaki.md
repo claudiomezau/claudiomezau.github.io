@@ -1,8 +1,8 @@
-#  Plantilla Nagasaki
+#  Plantilla Sakai
 Este proyecto se generó con Angular CLI versión 13.0.4.
 <br>
 
-<img src="https://raw.githubusercontent.com/claudiomezau/plantilla-sakai-ng-master/main/src/assets/demo/images/landing/screen-1.png" height="200">
+<img src="https://github.com/claudiomezau/plantilla-sakai-ng-master/blob/main/src/assets/demo/images/landing/screen-1.png" height="200">
 <br>
 
 ## Las 3 características principales
