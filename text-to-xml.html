@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/101430544?v=4&size=64">
+  <title>Text-to-XML</title>
+  <style>
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+  <a href="index.html" class="text-blue-500 hover:underline mb-4 inline-block">← Atrás</a>
+</head>
+<body class="bg-white relative dark-mode">
+  <div id="particles-js"></div>
+  <div class="flex flex-col items-center justify-center min-h-screen">
+    <div class="w-full max-w-4xl p-8 bg-white rounded shadow-md dark:bg-gray-800">
+      
+      <h1 class="text-3xl font-bold mb-6">Text-to-XML Converter</h1>
+      <div class="flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 mb-4 md:mb-0 md:pr-4">
+          <textarea id="input-text" class="w-full h-64 p-2 border rounded" placeholder="Pega tu texto aquí..."></textarea>
+          <div class="flex space-x-2 mt-2">
+            <button id="convert-btn" class="px-4 py-2 bg-blue-500 text-white rounded">Convertir</button>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 md:pl-4">
+          <textarea id="output-xml" class="w-full h-64 p-2 border rounded" readonly></textarea>
+          <div class="flex space-x-2 mt-2">
+            <button id="copy-btn" class="px-4 py-2 bg-green-500 text-white rounded">Copiar Texto</button>
+            <button id="clear-output-btn" class="px-4 py-2 bg-red-500 text-white rounded">Borrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: '#888888'
+        },
+        shape: {
+          type: 'circle',
+          stroke: {
+            width: 0,
+            color: '#000000'
+          },
+          polygon: {
+            nb_sides: 5
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: false,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: false,
+            speed: 40,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#888888',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 6,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false,
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200
+          }
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: {
+            enable: true,
+            mode: 'repulse'
+          },
+          onclick: {
+            enable: false
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 400,
+            line_linked: {
+              opacity: 1
+            }
+          },
+          bubble: {
+            distance: 400,
+            size: 40,
+            duration: 2,
+            opacity: 8,
+            speed: 3
+          },
+          repulse: {
+            distance: 200,
+            duration: 0.4
+          },
+          push: {
+            particles_nb: 4
+          },
+          remove: {
+            particles_nb: 2
+          }
+        }
+      },
+      retina_detect: true
+    });
+
+    document.getElementById('convert-btn').addEventListener('click', () => {
+      const inputText = document.getElementById('input-text').value;
+      const outputXml = inputText.split('\n').map(line => `<${line}/>`).join('\n');
+      document.getElementById('output-xml').value = `<root>\n${outputXml}\n</root>`;
+    });
+
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const outputXml = document.getElementById('output-xml');
+      outputXml.select();
+      document.execCommand('copy');
+    });
+
+    document.getElementById('clear-output-btn').addEventListener('click', () => {
+      document.getElementById('output-xml').value = '';
+    });
+  </script>
+</body>
+</html>
