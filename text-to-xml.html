@@ -152,7 +152,7 @@
     document.getElementById('convert-btn').addEventListener('click', () => {
       const inputText = document.getElementById('input-text').value;
       const outputXml = inputText.split('\n').map(line => `<${line}/>`).join('\n');
-      document.getElementById('output-xml').value = `<root>\n${outputXml}\n</root>`;
+      document.getElementById('output-xml').value = `<FML32>\n${outputXml}\n</FML32>`;
     });
 
     document.getElementById('copy-btn').addEventListener('click', () => {
